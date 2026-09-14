@@ -1,0 +1,252 @@
+/* ==============================================================================
+   ESTILOS GENERALES Y BASE
+   ============================================================================== */
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #0f172a;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    user-select: none;
+}
+
+#canvas-container {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* ==============================================================================
+   PANEL DE CONTROL UI (ESCRITORIO / DESKTOP)
+   ============================================================================== */
+#ui-panel {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 320px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    background: rgba(15, 23, 42, 0.88);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #334155;
+    z-index: 10;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    scrollbar-width: thin;
+    scrollbar-color: #475569 transparent;
+}
+
+/* Scrollbar personalizada */
+#ui-panel::-webkit-scrollbar {
+    width: 6px;
+}
+#ui-panel::-webkit-scrollbar-thumb {
+    background-color: #475569;
+    border-radius: 3px;
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #475569;
+    padding-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 0.85rem;
+    color: #cbd5e1;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    background: #1e293b;
+    color: white;
+    border: 1px solid #475569;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    outline: none;
+}
+
+.datos-tecnicos {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 12px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.datos-tecnicos p {
+    margin: 5px 0;
+    font-size: 0.85rem;
+}
+
+.datos-tecnicos span {
+    font-weight: bold;
+    color: #38bdf8;
+}
+
+.alerta {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border-left: 4px solid transparent;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.alerta h3 {
+    margin: 0 0 4px 0;
+    font-size: 1rem;
+}
+
+.alerta h4 {
+    margin: 0 0 6px 0;
+    font-size: 0.9rem;
+}
+
+.alerta p {
+    margin: 0;
+    font-size: 0.8rem;
+    line-height: 1.35;
+}
+
+/* Grilla para botones de interfaz */
+.botones-control, .botones-camara {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+button {
+    padding: 10px 8px;
+    border: none;
+    border-radius: 6px;
+    background: #3b82f6;
+    color: white;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+button:hover {
+    background: #2563eb;
+}
+
+button.activo {
+    background: #10b981;
+}
+
+/* ETIQUETAS FLOTANTES 3D */
+.label {
+    position: absolute;
+    color: white;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 5;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+}
+
+/* ==============================================================================
+   REGLAS RESPONSIVAS (TABLETS Y SMARTPHONES)
+   ============================================================================== */
+
+/* Dispositivos móviles y tablets (pantallas hasta 768px) */
+@media screen and (max-width: 768px) {
+    #ui-panel {
+        top: auto;
+        bottom: 15px;
+        right: 50%;
+        transform: translateX(50%);
+        width: 90vw;
+        max-width: 420px;
+        max-height: 42vh; /* Evita cubrir completamente la escena 3D */
+        padding: 14px;
+        border-radius: 14px;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    h2 {
+        font-size: 1.05rem;
+        padding-bottom: 6px;
+        margin-bottom: 8px;
+    }
+
+    label {
+        font-size: 0.8rem;
+        margin: 6px 0 3px;
+    }
+
+    select {
+        padding: 8px;
+        font-size: 0.8rem;
+        min-height: 40px; /* Facilita selección con dedos */
+    }
+
+    .datos-tecnicos {
+        padding: 8px 10px;
+        margin-bottom: 10px;
+    }
+
+    .datos-tecnicos p {
+        font-size: 0.78rem;
+    }
+
+    .alerta {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .alerta h3 { font-size: 0.9rem; }
+    .alerta h4 { font-size: 0.82rem; }
+    .alerta p { font-size: 0.75rem; }
+
+    button {
+        min-height: 42px; /* Touch Target ideal para pantallas táctiles */
+        font-size: 0.78rem;
+        padding: 6px;
+    }
+
+    .label {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+}
+
+/* Dispositivos muy pequeños (Smartphones verticales hasta 480px) */
+@media screen and (max-width: 480px) {
+    #ui-panel {
+        width: 94vw;
+        max-height: 48vh;
+        padding: 12px;
+        bottom: 10px;
+    }
+
+    .botones-control, .botones-camara {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+    }
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Biomecánico - LCA</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Librerías de Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+
+    <!-- Panel de Control UI -->
+    <div id="ui-panel">
+        <h2>Simulador de LCA</h2>
+        
+        <label for="material">Biomaterial / Solución:</label>
+        <select id="material">
+            <option value="LCA Nativo">LCA Nativo (Referencia)</option>
+            <option value="Hidroxiapatita">Malla de Hidroxiapatita</option>
+            <option value="Colageno">Andamio de Colágeno</option>
+            <option value="Sintetico">Polímero Sintético</option>
+            <option value="Arandela">Arandela Biomimética (SF+HA)</option>
+        </select>
+
+        <label for="actividad">Carga / Actividad:</label>
+        <select id="actividad">
+            <option value="Marcha Lenta">Marcha Lenta</option>
+            <option value="Marcha Normal">Marcha Normal</option>
+            <option value="Trote">Trote Ligero</option>
+            <option value="Salto">Salto / Aterrizaje</option>
+        </select>
+
+        <div class="datos-tecnicos">
+            <p>Esfuerzo Axial: <span id="val-axial">0 MPa</span></p>
+            <p>Tensión Cizallamiento: <span id="val-cizallamiento">0 MPa</span></p>
+            <p>Gradiente: <span id="val-gradiente">-</span></p>
+        </div>
+
+        <div id="caja-alerta" class="alerta">
+            <h3 id="estado-alerta">ESTADO</h3>
+            <h4 id="fs-alerta">Factor de Seguridad: -</h4>
+            <p id="explicacion-alerta">Explicación del comportamiento biomecánico.</p>
+        </div>
+
+        <div class="botones-control">
+            <button id="btn-pausa">Pausar Marcha</button>
+            <button id="btn-rayosx">Modo Rayos X: OFF</button>
+        </div>
+        
+        <div class="botones-camara">
+            <button id="btn-zoom-andamio">🔍 Andamio</button>
+            <button id="btn-zoom-dinamica">🔍 Rodilla Dinámica</button>
+            <button id="btn-zoom-estatica">🔍 Modelo Estático</button>
+            <button id="btn-zoom-reset">🔄 Vista General</button>
+        </div>
+    </div>
+
+    <!-- Etiquetas 3D -->
+    <div id="label-femur" class="label">Fémur</div>
+    <div id="label-lca" class="label">LCA / Injerto</div>
+    <div id="label-tibia" class="label">Tibia</div>
+    <div id="label-andamio" class="label">Andamio (Scaffold)</div>
+    <div id="label-estatica" class="label">Integración Ósea</div>
+    <div id="label-intratunel" class="label">Andamio Intratúnel</div>
+
+    <!-- Script principal -->
+    <script src="script.js"></script>
+</body>
+</html>
